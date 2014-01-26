@@ -47,6 +47,19 @@ public class TriangleParserTest extends TestCase {
 			assertEquals("Triangle contains invalid number [2a] on line 4", e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testReaderWithNegativeValues() throws FileNotFoundException, IOException {
+		String path = getFullPath("negativenumtriangle.txt");
+		TriangleFileParser parser = new TriangleFileParser(new FileReader(path));
+		try {
+			parser.next();
+			parser.next();
+			fail();
+		} catch (InvalidTriangleException e) {
+			assertEquals("Triangle contains a negative number [-3] on line 2", e.getMessage());
+		}
+	}
 
 	private String getFullPath(String fileName) {
 		URL resource = getClass().getResource("TriangleParserTest.class");

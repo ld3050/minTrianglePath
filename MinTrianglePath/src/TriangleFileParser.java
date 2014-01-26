@@ -44,6 +44,9 @@ public class TriangleFileParser implements Iterable<List<TriangleNode>>,
 			} catch (NumberFormatException e) {
 				throw new InvalidTriangleException("Triangle contains invalid number [%s] on line %s", e, token, count);
 			}
+			if (nodeValue < 0) {
+				throw new InvalidTriangleException("Triangle contains a negative number [%s] on line %s", nodeValue, count);
+			}
 			nodes.add(new TriangleNode(nodeValue));
 		}
 		return nodes;
@@ -52,10 +55,6 @@ public class TriangleFileParser implements Iterable<List<TriangleNode>>,
 	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
-	}
-
-	public void close() throws IOException {
-		br.close();
 	}
 
 	@Override
