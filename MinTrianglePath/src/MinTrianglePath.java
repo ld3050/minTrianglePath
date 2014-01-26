@@ -33,7 +33,7 @@ public class MinTrianglePath {
 			TrianglePathProcessor processor = new TrianglePathProcessor(parser);
 			processor.calculateMinimumPath();
 			for (TriangleNode node : processor.getMinimumPathsSoFar()) {
-				stdout.write("Minimal path is: " + node.getPathAsString());
+				stdout.write("Minimal path is: " + node.getPathAsString() + "\n");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
