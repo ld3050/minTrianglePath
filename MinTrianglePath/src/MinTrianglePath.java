@@ -47,6 +47,7 @@ public class MinTrianglePath {
 		try {
 			closeable.close();
 		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }
