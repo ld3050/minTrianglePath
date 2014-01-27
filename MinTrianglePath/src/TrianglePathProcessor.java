@@ -4,15 +4,15 @@ import java.util.List;
 
 public class TrianglePathProcessor {
 
-	TriangleFileParser parser;
+	Iterable<List<TriangleNode>> nodeLists;
 	private List<TriangleNode> minimumPathsSoFar;
 
-	public TrianglePathProcessor(TriangleFileParser parser) {
-		this.parser = parser;
+	public TrianglePathProcessor(Iterable<List<TriangleNode>> nodeLists) {
+		this.nodeLists = nodeLists;
 	}
 
 	/**
-	 * Iterate through all the lines in {@link TriangleFileParser} and match
+	 * Iterate through all the lines in {@link nodeLists} and match
 	 * each line of {@link TriangleNode}s with its parents in the line above.
 	 * 
 	 * Each node is responsible for tracking the minimum path it took to reach
@@ -21,7 +21,7 @@ public class TrianglePathProcessor {
 	public void calculateMinimumPath() throws InvalidTriangleException {
 		List<TriangleNode> parentList = null;
 		int depth = 1;
-		for (List<TriangleNode> nodeList : parser) {
+		for (List<TriangleNode> nodeList : nodeLists) {
 			if (nodeList.size() != depth) {
 				throw new InvalidTriangleException(
 						"Triangle is in an invalid state on line %s. There are %s values in the following row: %s",
